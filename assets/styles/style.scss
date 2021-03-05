@@ -1,0 +1,21 @@
+.point {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 15px;
+  color: #000000;
+  background: linear-gradient(90deg, #e59219 0%, #f5d854 100%);
+  border-radius: 17.5px;
+  width: 34px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overflow {
+  overflow: hidden;
+}
+
+button {
+  outline: none;
+}
