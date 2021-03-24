@@ -1,91 +1,88 @@
-<template>
-  <header class="header">
-    <div class="container">
-      <div class="header__inner">
-        <button class="header__menu" @click="openMenu">
-          <svg
-            width="24"
-            height="20"
-            viewBox="0 0 24 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="24" height="2" fill="black" />
-            <rect y="9" width="14" height="2" fill="black" />
-            <rect y="18" width="19" height="2" fill="black" />
-          </svg>
-        </button>
-        <div class="header__info">
-          <div class="header__status">
-            <img class="header__img" src="~/assets/image/status.svg" />
-            <p class="header__repute">Мегамодник</p>
-          </div>
-          <p class="point">200</p>
-          <a class="header__user" href=""
-            ><img class="header__avatar" src="~/assets/image/avatar.png"
-          /></a>
-        </div>
-      </div>
-    </div>
-    <Menu v-if="menu" />
-  </header>
-</template>
-
 <script>
+/* eslint-disable */
+import { mapState, mapMutations } from 'vuex'
 import Menu from '../components/Menu'
+import Container from './base/Container'
+import User from './User'
+
 export default {
-  components: { Menu },
-  data() {
-    return { menu: false }
+  components: { User, Container, Menu },
+  computed: {
+    ...mapState('core', ['isNavOpen']),
+  },
+  watch: {
+    isNavOpen(newVal, oldVal) {
+      console.log(1, newVal, oldVal)
+      newVal ? this.$scroll.disable() : this.$scroll.enable()
+    },
   },
   methods: {
+    ...mapMutations('core', ['setIsNavOpen']),
     openMenu() {
-      const body = document.querySelector('body')
-      this.menu = !this.menu
-      body.classList.toggle('overflow')
+      this.setIsNavOpen(!this.isNavOpen)
     },
   },
 }
 </script>
-
+<template>
+  <div class="header">
+    <Container class="header__container">
+      <div class="header__inner">
+        <button class="header__btn" @click="openMenu">
+          <img class="header__icon" src="/image/menu/menu.svg"/>
+        </button>
+        <User />
+      </div>
+    </Container>
+    <transition name="fade">
+      <Menu v-if="isNavOpen" class="header__menu" />
+    </transition>
+  </div>
+</template>
 <style lang="scss">
 .header {
-  padding: 12px 0;
+  padding: em(12px) 0;
+
   &__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  &__menu {
+
+  &__btn {
     border: none;
     background: none;
     cursor: pointer;
+    padding: 0;
+    outline: none;
+    width: em(24px);
+    height: em(20px);
   }
 
-  &__info {
-    display: flex;
-    align-items: center;
-  }
+}
+.user {
+  display: flex;
+  align-items: center;
 
   &__status {
     display: flex;
     align-items: center;
-    font-size: 12px;
+    font-size: em($size-text-tiny);
     font-weight: 700;
-    line-height: 15px;
-    color: #5698c4;
+    line-height: em(15px, $size-text-tiny);
+    color: $color-blue;
   }
 
   &__repute {
-    margin: 0 9px;
+    margin: 0 em(9px, $size-text-tiny);
   }
 
-  &__user {
-    margin-left: 9px;
-    .header__avatar {
-      width: 32px;
-      height: 32px;
-    }
+  &__link {
+    margin-left: em(9px, $size-text-tiny);
+    width: em(32px, $size-text-tiny);
+    height: em(32px, $size-text-tiny);
+    background-image: url('~static/image/user/avatar.jpg');
+    background-size: cover;
   }
 }
 </style>

@@ -1,45 +1,46 @@
+<script>
+import Container from './base/Container';
+export default {
+  components: { Container },
+};
+</script>
 <template>
   <section class="apps">
-    <div class="container">
-      <p class="apps__title">Больше баллов и призов — в приложении!</p>
+    <Container>
+      <p class="apps__title">Больше баллов и&nbsp;призов&nbsp;&mdash; в&nbsp;приложении!</p>
       <div class="apps__images">
-        <a href="#" class="apps__link">
-          <img
-            class="apps__image apps__image--margin"
-            src="~/assets/image/google.png"
-            alt=""
-          />
+        <a href="#" class="apps__link apps__link_margin">
+          <img class="apps__image" src="/image/apps/google.png" alt="" />
         </a>
         <a href="#" class="apps__link">
-          <img class="apps__image" src="~/assets/image/app.png" alt="" />
+          <img class="apps__image" src="/image/apps/app.png" alt="" />
         </a>
       </div>
-    </div>
+    </Container>
   </section>
 </template>
-
-<script>
-export default {}
-</script>
-
 <style lang="scss">
 .apps {
   margin: 11px 0;
   &__title {
-    font-size: 14px;
+    font-size: em($size-text-small-tablet);
     font-weight: 500;
-    line-height: 21px;
-    margin-bottom: 19px;
+    line-height: em(21px, $size-text-small-tablet);
+    margin-bottom: em(19px, $size-text-small-tablet);
     text-align: center;
   }
   &__images {
     display: flex;
-    justify-content: space-around;
-    max-width: 50%;
-    margin: 0 auto;
+    justify-content: space-between;
   }
-  &__image--margin {
-    margin-right: 40px;
+  &__image {
+    width: 100%;
+    height: auto;
+  }
+  @include ifmobile {
+    &__link_margin {
+      margin-right: em(40px, $size-text-small-tablet);
+    }
   }
 }
 </style>

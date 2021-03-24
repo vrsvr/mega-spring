@@ -14,14 +14,14 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '~assets/fonts/stylesheet.css',
-    { src: '~assets/styles/container.scss', lang: 'scss' },
-    { src: '~assets/styles/style.scss', lang: 'scss' },
-  ],
+  css: ['~/assets/scss/common.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '~/plugins/scroll', ssr: false }],
+
+  styleResources: {
+    scss: ['assets/scss/resources.scss'],
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -33,8 +33,8 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ['@nuxtjs/style-resources'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-}
+};
