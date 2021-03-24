@@ -1,0 +1,60 @@
+@mixin menu-icon () {
+  content: '';
+  position: absolute;
+  width: em(24px);
+  height: em(24px);
+  left: 0;
+  top: em(-2px);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@mixin ifmobile {
+  @media only screen and (max-width: 480px), only screen and (max-width: 768px) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin iftablet {
+  @media only screen and (min-width: 480px) and (max-width: 768px) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin ifdesktop {
+  @media only screen and (min-width: 769px), only screen and (min-width: 481px) and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin respond($media) {
+  @media only screen and (max-width: $media) {
+    @content;
+  }
+}
+
+@mixin respondFrom($media) {
+  @media only screen and (min-width: $media) {
+    @content;
+  }
+}
+
+@mixin respondH($media) {
+  @media only screen and (max-height: $media) {
+    @content;
+  }
+}
+
+@mixin respondHFrom($media) {
+  @media only screen and (min-height: $media) {
+    @content;
+  }
+}
+
+@mixin ifparent($selector) {
+  #{$selector} & {
+    @content;
+  }
+}
+
+

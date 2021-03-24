@@ -1,0 +1,33 @@
+html {
+  font-family: 'DIN Pro';
+  font-weight: normal;
+  font-style: normal;
+  font-size: (16/320)*100vw;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.fade-enter-active {
+  transition: transform 0.4s ease-out, opacity 0.1s;
+}
+.fade-leave-active {
+  transition: opacity .15s;
+}
+.fade-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.fade-leave-to {
+  opacity: 0;
+}
